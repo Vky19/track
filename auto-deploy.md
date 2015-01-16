@@ -81,5 +81,7 @@ At this point you should have 2-3 files checked in to your repo: `compile.sh`, `
 
 I use basically this exact setup for http://www.w3.org/2001/tag/doc/promises-guide (which is hosted on gh-pages; the w3.org URL is a proxy to that). The relevant files are:
 
-https://github.com/w3ctag/promises-guide/blob/master/.travis.yml
-https://github.com/w3ctag/promises-guide/blob/master/deploy-gh-pages.sh
+- https://github.com/w3ctag/promises-guide/blob/master/.travis.yml
+- https://github.com/w3ctag/promises-guide/blob/master/deploy-gh-pages.sh
+
+(I have inlined the compile script into the latter, so there is no separate `compile.sh`.)
