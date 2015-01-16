@@ -6,7 +6,9 @@ This is a set up for projects which want to check in only their source files, bu
 
 You want a script that does a local compile to e.g. an `out/` directory. Let's call this `compile.sh` for our purposes, but for your project it might be `npm build` or `gulp make-docs` or anything similar.
 
-Check this in to your project.
+The `out/` directory should contain everything you want deployed to `gh-pages`. That almost always includes an `index.html`.
+
+Check this script in to your project.
 
 ## Create a deploy script
 
