@@ -89,6 +89,16 @@ env:
   - secure: "<.... encrypted data from above ....>"
 ```
 
+If your compile script depends on certain environment features, you might want to set up the environment using Travis's built-in abilities, e.g. by adding lines like these:
+
+```yml
+language: node_js
+node_js:
+- "0.10"
+```
+
+(In this case, [by default](http://docs.travis-ci.com/user/languages/javascript-with-nodejs/) Travis will install Node.js 0.10, then run `npm install`.)
+
 ## Finishing up
 
 At this point you should have 2-3 files checked in to your repo: `compile.sh`, `deploy.sh`, and `.travis.yml`. If you've also told Travis about your repo, then the first time you push to GitHub with these changes, it will automatically compile and deploy your source!
