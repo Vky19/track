@@ -77,6 +77,8 @@ This will give you a very long line like
 secure: "<.... encrypted data ....>"
 ```
 
+If you don't want to install Ruby/RubyGems and such, there are reports that the [travis-encrypt](http://npmjs.org/travis-encrypt) npm package works just as well.
+
 ## Create your `.travis.yml` file
 
 With all this in hand, you can create a `.travis.yml` file. It should look like this:
