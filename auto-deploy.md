@@ -66,7 +66,7 @@ secure: "<.... encrypted data ....>"
 With all this in hand, you can create a `.travis.yml` file. It should look like this:
 
 ```yml
-script: bash ./deploy-gh-pages.sh
+script: bash ./deploy.sh
 env:
   global:
   - GH_REF: github.com/<your name>/<your repo>.git
@@ -76,3 +76,10 @@ env:
 ## Finishing up
 
 At this point you should have 2-3 files checked in to your repo: `compile.sh`, `deploy.sh`, and `.travis.yml`. If you've also told Travis about your repo, then the first time you push to GitHub with these changes, it will automatically compile and deploy your source!
+
+## See it in action
+
+I use basically this exact setup for http://www.w3.org/2001/tag/doc/promises-guide (which is hosted on gh-pages; the w3.org URL is a proxy to that). The relevant files are:
+
+https://github.com/w3ctag/promises-guide/blob/master/.travis.yml
+https://github.com/w3ctag/promises-guide/blob/master/deploy-gh-pages.sh
