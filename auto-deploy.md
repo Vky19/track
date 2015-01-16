@@ -1,0 +1,78 @@
+# Auto-deploying built products to gh-pages with Travis
+
+This is a set up for projects which want to check in only their source files, but have their gh-pages branch automatically updated with some compiled output every time they push.
+
+## Create a compile script
+
+You want a script that does a local compile to e.g. an `out/` directory. Let's call this `compile.sh` for our purposes, but for your project it might be `npm build` or `gulp make-docs` or anything similar.
+
+Check this in to your project.
+
+## Create a deploy script
+
+Create a deploy script, call it `deploy.sh`, with the following contents: 
+
+```bash
+#!/bin/bash
+set -e
+
+rm -rf out || exit 0;
+mkdir out;
+./compile.sh
+
+cd out
+git init
+git config user.name "Travis-CI"
+git config user.email "<you>@<your-email>"
+git add .
+git commit -m "Deploy to GitHub Pages"
+git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+```
+
+You can run this deploy script locally if you like, with
+
+```
+GH_TOKEN=<your password> GH_REF=github.com/<your name>/<your repo>.git ./deploy.sh
+```
+
+But that's no fun. We want this to happen automatically every time you push. To do that, we'll use Travis CI.
+
+## Sign up for Travis and add your project
+
+Get an account at https://travis-ci.org/. Turn on Travis for your repository in question, using the Travis control panel.
+
+## Get encrypted credentials
+
+The trickiest part of all this is that you want to give Travis the ability to run your deploy script and push changes to gh-pages, without checking in the necessary credentials to your repo. The solution for this is to use Travis's [encryption support](http://docs.travis-ci.com/user/encryption-keys/).
+
+We'll generate a GitHub personal access token (essentially an application-specific password) and encrypt it, then put the encrypted version in our `.travis.yml` file. Then we can check in the `.travis.yml` file with no issues.
+
+First, generate a token at https://github.com/settings/applications
+
+Then, install the Travis client and do
+
+```
+travis encrypt GH_TOKEN=<secret token here>
+```
+
+This will give you a very long line like
+
+```
+secure: "<.... encrypted data ....>"
+```
+
+## Create your `.travis.yml` file
+
+With all this in hand, you can create a `.travis.yml` file. It should look like this:
+
+```yml
+script: bash ./deploy-gh-pages.sh
+env:
+  global:
+  - GH_REF: github.com/<your name>/<your repo>.git
+  - secure: "<.... encrypted data from above ....>"
+```
+
+## Finishing up
+
+At this point you should have 2-3 files checked in to your repo: `compile.sh`, `deploy.sh`, and `.travis.yml`. If you've also told Travis about your repo, then the first time you push to GitHub with these changes, it will automatically compile and deploy your source!
