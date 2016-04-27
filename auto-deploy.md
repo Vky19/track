@@ -117,7 +117,7 @@ Commit all changes to your .travis.yml.
 
 Make note of that encryption label, here `"0a6446eb3ae3"`. This can be public information; it just says which environment variables to use on the Travis server when decrypting this file.
 
-You should follow the instructions and commit `deploy_key.enc` to the repository. You should also add `deploy_key` to your `.gitignore`, or delete it.
+You should follow the instructions and commit `deploy_key.enc` to the repository. You should also add `deploy_key` to your `.gitignore`, or delete it. Ignore the bits about `.travis.yml`, however; we're going to do that part all custom-like.
 
 ## Create your `.travis.yml` file
 
