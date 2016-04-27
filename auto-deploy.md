@@ -20,7 +20,6 @@ set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
-EMAIL_TO_NOTIFY="you@example.com"
 
 function doCompile {
   ./compile.sh
@@ -54,7 +53,7 @@ doCompile
 # Now let's go have some fun with the cloned repo
 cd out
 git config user.name "Travis CI"
-git config user.email "$EMAIL_TO_NOTIFY"
+git config user.email "$COMMIT_AUTHOR_EMAIL"
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 if [ -z `git diff --exit-code` ]; then
@@ -131,7 +130,10 @@ script: bash ./deploy.sh
 env:
   global:
   - ENCRYPTION_LABEL: "<.... encryption label from previous step ....>"
+  - COMMIT_AUTHOR_EMAIL: "you@example.com"
 ```
+
+The `$COMMIT_AUTHOR_EMAIL` variable will be used in the commits to gh-pages that Travis makes on your behalf.
 
 If your compile script depends on certain environment features, you might want to set up the environment using Travis's built-in abilities, e.g. by changing the language lines like so:
 
