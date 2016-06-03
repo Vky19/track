@@ -94,7 +94,7 @@ _NOTE: an earlier version of this guide recommended generating a GitHub personal
 
 First, [generate a new SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/). You should _not_ reuse existing SSH keys, and you should _not_ add the SSH key to your GitHub account.
 
-Next, add that deploy key to your repository at https://github.com/<your name>/<your repo>/settings/keys.
+Next, add that deploy key to your repository at `https://github.com/<your name>/<your repo>/settings/keys`.
 
 Now use the Travis client to encrypt the generated deploy key. The result should look something like this:
 
