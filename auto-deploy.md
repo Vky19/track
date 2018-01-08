@@ -158,3 +158,7 @@ I use basically this exact setup for https://domenic.github.io/zones/. The relev
 - https://github.com/domenic/zones/blob/master/deploy_key.enc
 
 (I have inlined the compile script into `deploy.sh`, so there is no separate `compile.sh`.)
+
+## Licensing
+
+All code in the above post is licensed under the MIT License.
