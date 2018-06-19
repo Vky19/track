@@ -92,7 +92,7 @@ The trickiest part of all this is that you want to give Travis the ability to ru
 
 _NOTE: an earlier version of this guide recommended generating a GitHub personal access token and encrypting that. Although this is simpler, it is not a good idea in general, since it means any of your repository's collaborators would be able to edit the Travis build script to email them your access token, thus giving them access to all your repositories. The repository-specific deploy key approach is safer._
 
-First, [generate a new SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/). You should _not_ reuse existing SSH keys, and you should _not_ add the SSH key to your GitHub account.
+First, [generate a new SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/). You should _not_ reuse existing SSH keys, and you should _not_ add the SSH key to your GitHub account. Also, you must ensure that you do not include a passphrase (i.e., just press enter when asked for one).
 
 Next, add that deploy key to your repository at `https://github.com/<your name>/<your repo>/settings/keys`.
 
